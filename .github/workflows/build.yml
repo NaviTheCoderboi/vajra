@@ -1,0 +1,36 @@
+name: Build CLI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+jobs:
+    build:
+        name: Build (${{ matrix.os }})
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Set up CMake
+              uses: jwlawson/actions-setup-cmake@v2
+
+            - name: Configure
+              run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+            - name: Build
+              run: cmake --build build --config Release --parallel
+
+            - name: Upload artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: vajra-${{ matrix.os }}
+                  path: |
+                      build/Release/vajra.exe
+                      build/vajra
+                  if-no-files-found: ignore

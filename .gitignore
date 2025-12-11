@@ -1,0 +1,18 @@
+# Ignore common CMake build and output directories
+/build/
+/Binary/
+/out/
+/cmake-build-debug/
+[Cc]MakeCache.txt
+[Cc]MakeFiles/
+/Makefile
+install_manifest.txt
+*.dir/
+*.bin
+*.obj
+*.exe
+*.log
+*.user
+
+# Ignore CLion, Visual Studio, etc build outputs
+cmake-build-*
