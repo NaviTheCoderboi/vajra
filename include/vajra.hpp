@@ -18,8 +18,9 @@
 #include <sstream>
 #include <sys/resource.h>
 #elif defined(_WIN32)
-#include <windows.h>
+#define NOMINMAX // Prevent Windows from defining min/max macros
 #include <psapi.h>
+#include <windows.h>
 #endif
 
 namespace Statistics {

@@ -9,6 +9,7 @@
 #include <vector>
 
 #ifdef _WIN32
+#define NOMINMAX  // Prevent Windows from defining min/max macros
 #include <io.h>
 #include <windows.h>
 #else
