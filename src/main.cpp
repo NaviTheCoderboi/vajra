@@ -9,10 +9,15 @@
 #include <vector>
 
 #ifdef _WIN32
-#define NOMINMAX  // Prevent Windows from defining min/max macros
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 #include <io.h>
 #include <windows.h>
-#else
+#endif
+
+#ifdef __linux__
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <unistd.h>

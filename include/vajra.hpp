@@ -17,10 +17,17 @@
 #include <fstream>
 #include <sstream>
 #include <sys/resource.h>
-#elif defined(_WIN32)
-#define NOMINMAX // Prevent Windows from defining min/max macros
-#include <psapi.h>
+#endif
+
+#ifdef _WIN32
+// clang-format off
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+
 #include <windows.h>
+#include <psapi.h>
+// clang-format on
 #endif
 
 namespace Statistics {

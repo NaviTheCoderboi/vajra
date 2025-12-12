@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 4.0 )
 
 set(PROJECT_NAME "vajra")
-project(
-    ${PROJECT_NAME}
-    VERSION 1.0.1
-)
+project(${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_EXTENSIONS ON)
