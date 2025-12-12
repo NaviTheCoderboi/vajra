@@ -18,8 +18,8 @@
 #include <sstream>
 #include <sys/resource.h>
 #elif defined(_WIN32)
-#include <psapi.h>
 #include <windows.h>
+#include <psapi.h>
 #endif
 
 namespace Statistics {
