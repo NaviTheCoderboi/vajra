@@ -17,6 +17,9 @@
 #include <fstream>
 #include <sstream>
 #include <sys/resource.h>
+#elif defined(_WIN32)
+#include <psapi.h>
+#include <windows.h>
 #endif
 
 namespace Statistics {
@@ -397,6 +400,12 @@ inline MemoryInfo getMemoryInfo() {
             iss >> info.currentRssKb;
             break;
         }
+    }
+#elif defined(_WIN32)
+    PROCESS_MEMORY_COUNTERS_EX pmc{};
+    if (GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
+        info.peakRssKb = pmc.PeakWorkingSetSize / 1024;
+        info.currentRssKb = pmc.WorkingSetSize / 1024;
     }
 #endif
     return info;
